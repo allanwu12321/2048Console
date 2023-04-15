@@ -1,3 +1,9 @@
+const readline = require("readline");
+let rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
 const BOARD_SIZE = 4;
 
 let board = [];
@@ -48,6 +54,27 @@ function generateRandomTile(){
     }
 }
 
+// asks user for input
+function getMove() {
+    rl.question('Enter your move (up, down, left, right): ', function(answer) {
+        switch(answer) {
+            case 'left':
+                console.log('L');
+                break;
+            case 'right':
+                console.log('R');
+                break;
+            case 'up':
+                console.log('U');
+                break;
+            case 'down':
+                console.log('D');
+                break;
+        }
+        rl.close();
+    });
+}
+
 function printBoard(){
     // for each row in board, print the row
     board.forEach(function(row){
@@ -57,3 +84,4 @@ function printBoard(){
 
 initialize();
 printBoard();
+getMove();
