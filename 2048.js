@@ -59,7 +59,8 @@ function getMove() {
     rl.question('Enter your move (up, down, left, right): ', function(answer) {
         switch(answer) {
             case 'left':
-                console.log('L');
+                moveLeft();
+                printBoard();
                 break;
             case 'right':
                 console.log('R');
@@ -73,6 +74,36 @@ function getMove() {
         }
         rl.close();
     });
+}
+
+// this version of moveLeft will move all the tiles to the left, but will not handle merging yet
+function moveLeft(){
+    // for each row
+    for(let rowIndex = 0; rowIndex < BOARD_SIZE; rowIndex++){
+        let row = board[rowIndex];
+        // starting from the second tile from the left, find the leftmost tile it can travel to
+        for(let i = 1; i < row.length; i++){
+            // if there is no tile at this spot in the row, move to the next tile
+            if (row[i].tile === 0) {
+                continue;
+            }
+            let moveToIndex = null;
+            // find the leftmost tile that this tile can move to
+            for(let j = i - 1; j >= 0; j--){
+                if(row[j] === 0){
+                    moveToIndex = j;
+                } else {
+                    break;
+                }
+            }
+            // if there is an index to move to
+            if (moveToIndex !== null) {
+                // move the tile to the spot
+                row[moveToIndex] = row[i];
+                row[i] = 0;
+            }
+        }
+    }
 }
 
 function printBoard(){
