@@ -76,7 +76,7 @@ function getMove() {
     });
 }
 
-// this version of moveLeft will move all the tiles to the left, but will not handle merging yet
+// this version of moveLeft will move to the left and handle merging, but runs into a problem
 function moveLeft(){
     // for each row
     for(let rowIndex = 0; rowIndex < BOARD_SIZE; rowIndex++){
@@ -90,7 +90,8 @@ function moveLeft(){
             let moveToIndex = null;
             // find the leftmost tile that this tile can move to
             for(let j = i - 1; j >= 0; j--){
-                if(row[j] === 0){
+                // if the tile is empty, or has the same value as row[i]
+                if(row[j] === 0 || (row[j] === row[i])){
                     moveToIndex = j;
                 } else {
                     break;
@@ -98,9 +99,15 @@ function moveLeft(){
             }
             // if there is an index to move to
             if (moveToIndex !== null) {
-                // move the tile to the spot
-                row[moveToIndex] = row[i];
-                row[i] = 0;
+                // move the tile to the spot or merge it
+                if(row[moveToIndex] === 0){
+                    row[moveToIndex] = row[i];
+                    row[i] = 0;
+                } else {
+                    row[moveToIndex] = row[i] + row[moveToIndex];
+                    row[i] = 0;
+                }
+                
             }
         }
     }
@@ -114,5 +121,6 @@ function printBoard(){
 }
 
 initialize();
+board[0] = [0, 2, 2, 4];
 printBoard();
 getMove();
