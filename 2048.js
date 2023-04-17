@@ -118,10 +118,24 @@ function moveLeft(){
     }
 }
 
-function reverse(){
+// reverses the board contents
+function reverse() {
     board.forEach(function (row) {
         row = row.reverse();
     });
+}
+
+// transposes the board contents
+function transpose() {
+    for(let i = 0; i < BOARD_SIZE; i++) {
+        // We only want to swap up until the center
+        for(let j = 0; j < i; j++){
+            // swaps the corresponding values
+            let temp = arr[i][j];
+            arr[i][j] = arr[j][i];
+            arr[j][i] = temp;
+        }
+    }
 }
 
 function printBoard(){
