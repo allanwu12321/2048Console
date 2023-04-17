@@ -81,6 +81,8 @@ function moveLeft(){
     // for each row
     for(let rowIndex = 0; rowIndex < BOARD_SIZE; rowIndex++){
         let row = board[rowIndex];
+        // create a temporary mergeList for the row
+        let mergeList = [];
         // starting from the second tile from the left, find the leftmost tile it can travel to
         for(let i = 1; i < row.length; i++){
             // if there is no tile at this spot in the row, move to the next tile
@@ -91,7 +93,8 @@ function moveLeft(){
             // find the leftmost tile that this tile can move to
             for(let j = i - 1; j >= 0; j--){
                 // if the tile is empty, or has the same value as row[i]
-                if(row[j] === 0 || (row[j] === row[i])){
+                if(row[j] === 0 || 
+                    (row[j] === row[i] && !mergeList.includes(j)) ){
                     moveToIndex = j;
                 } else {
                     break;
@@ -104,8 +107,10 @@ function moveLeft(){
                     row[moveToIndex] = row[i];
                     row[i] = 0;
                 } else {
+                    // merge the tiles and add to mergeList
                     row[moveToIndex] = row[i] + row[moveToIndex];
                     row[i] = 0;
+                    mergeList.push(moveToIndex);
                 }
                 
             }
