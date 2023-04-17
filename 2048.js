@@ -131,9 +131,9 @@ function transpose() {
         // We only want to swap up until the center
         for(let j = 0; j < i; j++){
             // swaps the corresponding values
-            let temp = arr[i][j];
-            arr[i][j] = arr[j][i];
-            arr[j][i] = temp;
+            let temp = board[i][j];
+            board[i][j] = board[j][i];
+            board[j][i] = temp;
         }
     }
 }
@@ -148,3 +148,6 @@ function printBoard(){
 initialize();
 board[0] = [0, 2, 2, 4];
 printBoard();
+transpose();
+printBoard();
+rl.close();
