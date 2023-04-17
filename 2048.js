@@ -118,6 +118,12 @@ function moveLeft(){
     }
 }
 
+function reverse(){
+    board.forEach(function (row) {
+        row = row.reverse();
+    });
+}
+
 function printBoard(){
     // for each row in board, print the row
     board.forEach(function(row){
@@ -128,4 +134,3 @@ function printBoard(){
 initialize();
 board[0] = [0, 2, 2, 4];
 printBoard();
-getMove();
