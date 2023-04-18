@@ -94,6 +94,18 @@ function getMove() {
                 break;
         }
         generateRandomTile();
+        let status = gameStatus();
+        if(status === "win"){
+            printBoard();
+            console.log("WIN");
+            rl.close();
+            return;
+        } else if(status === "loss"){
+            printBoard();
+            console.log("LOSS");
+            rl.close();
+            return;
+        }
         getMove();
     });
 }
@@ -269,11 +281,22 @@ function main(){
     getMove();
 }
 
-main();
+// main();
 
 // If you need to test, comment main and test below
 
 // initialize();
-// board[0] = [4, 2, 4, 2];
-// printBoard();
-// getMove();
+// board = [
+//     [4, 2, 4, 2],
+//     [2, 4, 2, 4],
+//     [4, 2, 4, 2],
+//     [4, 2, 4, 0]
+// ];
+board = [
+    [1024, 1024, 0, 0],
+    [0,0,0,0],
+    [0,0,0,0],
+    [0,0,0,0]
+]
+getMove();
+//rl.close();
