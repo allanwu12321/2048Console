@@ -59,26 +59,36 @@ function getMove() {
     rl.question('Enter your move (up, down, left, right): ', function(answer) {
         switch(answer) {
             case 'left':
-                moveLeft();
-                generateRandomTile();
-                printBoard();
+                if(canMoveLeft()){
+                    moveLeft();
+                } else {
+                    return;
+                }
                 break;
             case 'right':
-                moveRight();
-                generateRandomTile();
-                printBoard();
+                if(canMoveRight()){
+                    moveRight();
+                } else {
+                    return;
+                }
                 break;
             case 'up':
-                moveUp();
-                generateRandomTile();
-                printBoard();
+                if(canMoveUp()){
+                    moveUp();
+                } else {
+                    return;
+                }
                 break;
             case 'down':
-                moveDown();
-                generateRandomTile();
-                printBoard();
+                if(canMoveDown()){
+                    moveDown();
+                } else {
+                    return;
+                }
                 break;
         }
+        generateRandomTile();
+        printBoard();
         rl.close();
     });
 }
@@ -218,9 +228,9 @@ function printBoard(){
 }
 
 function main(){
-    initialize()
-    getMove()
+    initialize();
     printBoard();
+    getMove();
 }
 
 main();
