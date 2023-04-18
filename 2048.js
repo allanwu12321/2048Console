@@ -22,8 +22,8 @@ function initialize(){
         board[i] = row;
     }
     // generate starting tiles
-    // generateRandomTile();
-    // generateRandomTile();
+    generateRandomTile();
+    generateRandomTile();
 }
 
 // generates a random tile with value 2 or 4 in any free cell
@@ -56,6 +56,7 @@ function generateRandomTile(){
 
 // asks user for input, and make the move that is inputted
 function getMove() {
+    printBoard();
     rl.question('Enter your move (up, down, left, right): ', function(answer) {
         // for each direction, check if it can move in that direction. If it can't end the function
         switch(answer) {
@@ -63,8 +64,7 @@ function getMove() {
                 if(canMoveLeft()){
                     moveLeft();
                 } else {
-                    printBoard();
-                    rl.close();
+                    getMove();
                     return;
                 }
                 break;
@@ -72,8 +72,7 @@ function getMove() {
                 if(canMoveRight()){
                     moveRight();
                 } else {
-                    printBoard();
-                    rl.close();
+                    getMove();
                     return;
                 }
                 break;
@@ -81,8 +80,7 @@ function getMove() {
                 if(canMoveUp()){
                     moveUp();
                 } else {
-                    printBoard();
-                    rl.close();
+                    getMove();
                     return;
                 }
                 break;
@@ -90,15 +88,13 @@ function getMove() {
                 if(canMoveDown()){
                     moveDown();
                 } else {
-                    printBoard();
-                    rl.close();
+                    getMove();
                     return;
                 }
                 break;
         }
         generateRandomTile();
-        printBoard();
-        rl.close();
+        getMove();
     });
 }
 
@@ -240,15 +236,14 @@ function printBoard(){
 
 function main(){
     initialize();
-    printBoard();
     getMove();
 }
 
-//main();
+main();
 
 // If you need to test, comment main and test below
 
-initialize();
-board[0] = [4, 2, 4, 2];
-printBoard();
-getMove();
+// initialize();
+// board[0] = [4, 2, 4, 2];
+// printBoard();
+// getMove();
