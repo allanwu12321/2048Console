@@ -54,22 +54,29 @@ function generateRandomTile(){
     }
 }
 
-// asks user for input
+// asks user for input, and make the move that is inputted
 function getMove() {
     rl.question('Enter your move (up, down, left, right): ', function(answer) {
         switch(answer) {
             case 'left':
                 moveLeft();
+                generateRandomTile();
                 printBoard();
                 break;
             case 'right':
-                console.log('R');
+                moveRight();
+                generateRandomTile();
+                printBoard();
                 break;
             case 'up':
-                console.log('U');
+                moveUp();
+                generateRandomTile();
+                printBoard();
                 break;
             case 'down':
-                console.log('D');
+                moveDown();
+                generateRandomTile();
+                printBoard();
                 break;
         }
         rl.close();
@@ -171,6 +178,4 @@ function printBoard(){
 initialize();
 board[0] = [4, 2, 4, 2];
 printBoard();
-transpose();
-printBoard();
-rl.close();
+getMove();
