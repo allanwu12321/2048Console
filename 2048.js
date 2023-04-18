@@ -22,8 +22,8 @@ function initialize(){
         board[i] = row;
     }
     // generate starting tiles
-    //generateRandomTile();
-    //generateRandomTile();
+    generateRandomTile();
+    generateRandomTile();
 }
 
 // generates a random tile with value 2 or 4 in any free cell
@@ -169,13 +169,25 @@ function moveDown() {
 }
 
 function printBoard(){
+    // comment console.clear out when testing
+    // console.clear();
     // for each row in board, print the row
     board.forEach(function(row){
         console.log(row.join(" "));
     });
 }
 
-initialize();
-board[0] = [4, 2, 4, 2];
-printBoard();
-getMove();
+function main(){
+    initialize()
+    getMove()
+    printBoard();
+}
+
+main();
+
+// If you need to test, comment main and test below
+
+// initialize();
+// board[0] = [4, 2, 4, 2];
+// printBoard();
+// getMove();
