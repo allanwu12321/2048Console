@@ -57,6 +57,7 @@ function generateRandomTile(){
 // asks user for input, and make the move that is inputted
 function getMove() {
     rl.question('Enter your move (up, down, left, right): ', function(answer) {
+        // for each direction, check if it can move in that direction. If it can't end the function
         switch(answer) {
             case 'left':
                 if(canMoveLeft()){
@@ -182,8 +183,8 @@ function moveDown() {
 function canMoveLeft(){
     for(let row = 0; row < BOARD_SIZE; row++){
         for(let col = 1; col < board[row].length; col++){
-            let current = board[i][j];
-            let left = board[i][j - 1];
+            let current = board[row][col];
+            let left = board[row][col - 1];
             if(left === 0 || left === current){
                 return true;
             }
