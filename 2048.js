@@ -138,6 +138,29 @@ function transpose() {
     }
 }
 
+// moveRight will reuse moveLeft but reverse the board first
+function moveRight(){
+    reverse();
+    moveLeft();
+    reverse();
+}
+
+// moveUp requires a transposition instead of a reversal
+function moveUp() {
+    transpose();
+    moveLeft();
+    transpose();
+}
+
+// moveDown requires both a transposition and a reversal. However, reverse before transposing to return to original
+function moveDown() {
+    transpose();
+    reverse();
+    moveLeft();
+    reverse();
+    transpose();
+}
+
 function printBoard(){
     // for each row in board, print the row
     board.forEach(function(row){
@@ -146,7 +169,7 @@ function printBoard(){
 }
 
 initialize();
-board[0] = [0, 2, 2, 4];
+board[0] = [4, 2, 4, 2];
 printBoard();
 transpose();
 printBoard();
