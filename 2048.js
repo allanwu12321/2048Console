@@ -225,9 +225,39 @@ function canMoveDown(){
     return canMove;
 }
 
+// checking game status
+
+// just check if 2048 appears anywhere on the board
+function hasWon(){
+    for(let i = 0; i < BOARD_SIZE; i++){
+        for(let j = 0; j < BOARD_SIZE; j++){
+            if(board[i][j] === 2048){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+// just check if you can't move in any direction
+function hasLost(){
+    if(!canMoveLeft() && !canMoveRight() && !canMoveUp() && !canMoveDown()){
+        return true;
+    }
+    return false;
+}
+
+function gameStatus(){
+    if(hasWon()){
+        return "win";
+    } else if(hasLost()){
+        return "loss";
+    }
+}
+
 function printBoard(){
     // comment console.clear out when testing
-    // console.clear();
+    console.clear();
     // for each row in board, print the row
     board.forEach(function(row){
         console.log(row.join(" "));
