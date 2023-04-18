@@ -22,8 +22,8 @@ function initialize(){
         board[i] = row;
     }
     // generate starting tiles
-    generateRandomTile();
-    generateRandomTile();
+    //generateRandomTile();
+    //generateRandomTile();
 }
 
 // generates a random tile with value 2 or 4 in any free cell
