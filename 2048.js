@@ -22,8 +22,8 @@ function initialize(){
         board[i] = row;
     }
     // generate starting tiles
-    generateRandomTile();
-    generateRandomTile();
+    // generateRandomTile();
+    // generateRandomTile();
 }
 
 // generates a random tile with value 2 or 4 in any free cell
@@ -63,6 +63,8 @@ function getMove() {
                 if(canMoveLeft()){
                     moveLeft();
                 } else {
+                    printBoard();
+                    rl.close();
                     return;
                 }
                 break;
@@ -70,6 +72,8 @@ function getMove() {
                 if(canMoveRight()){
                     moveRight();
                 } else {
+                    printBoard();
+                    rl.close();
                     return;
                 }
                 break;
@@ -77,6 +81,8 @@ function getMove() {
                 if(canMoveUp()){
                     moveUp();
                 } else {
+                    printBoard();
+                    rl.close();
                     return;
                 }
                 break;
@@ -84,6 +90,8 @@ function getMove() {
                 if(canMoveDown()){
                     moveDown();
                 } else {
+                    printBoard();
+                    rl.close();
                     return;
                 }
                 break;
@@ -185,11 +193,13 @@ function canMoveLeft(){
         for(let col = 1; col < board[row].length; col++){
             let current = board[row][col];
             let left = board[row][col - 1];
-            if(left === 0 || left === current){
-                return true;
-            }
-            else {
-                continue;
+            if(current !== 0){
+                if(left === 0 || left === current){
+                    return true;
+                }
+                else {
+                    continue;
+                }
             }
         }
     }
@@ -210,7 +220,7 @@ function canMoveUp(){
     return canMove;
 }
 
-function canMoveRight(){
+function canMoveDown(){
     transpose()
     reverse();
     let canMove = canMoveLeft();
@@ -234,11 +244,11 @@ function main(){
     getMove();
 }
 
-main();
+//main();
 
 // If you need to test, comment main and test below
 
-// initialize();
-// board[0] = [4, 2, 4, 2];
-// printBoard();
-// getMove();
+initialize();
+board[0] = [4, 2, 4, 2];
+printBoard();
+getMove();
