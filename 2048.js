@@ -168,6 +168,46 @@ function moveDown() {
     transpose();
 }
 
+// we need functions to check if we can move in a direction before moving
+function canMoveLeft(){
+    for(let row = 0; row < BOARD_SIZE; row++){
+        for(let col = 1; col < board[row].length; col++){
+            let current = board[i][j];
+            let left = board[i][j - 1];
+            if(left === 0 || left === current){
+                return true;
+            }
+            else {
+                continue;
+            }
+        }
+    }
+    return false; 
+}
+
+function canMoveRight(){
+    reverse();
+    let canMove = canMoveLeft();
+    reverse();
+    return canMove;
+}
+
+function canMoveUp(){
+    transpose();
+    let canMove = canMoveLeft();
+    transpose();
+    return canMove;
+}
+
+function canMoveRight(){
+    transpose()
+    reverse();
+    let canMove = canMoveLeft();
+    reverse();
+    transpose();
+    return canMove;
+}
+
 function printBoard(){
     // comment console.clear out when testing
     // console.clear();
